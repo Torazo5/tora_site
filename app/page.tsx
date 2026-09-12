@@ -1,69 +1,195 @@
-import Image from "next/image";
+import {
+  awards,
+  beyond,
+  education,
+  experience,
+  highlights,
+  profile,
+  projects,
+  research,
+  skills,
+  type Project,
+} from "./content";
+
+function Section({ title, children }: { title: string; children: React.ReactNode }) {
+  return (
+    <section id={title.toLowerCase().replace(/\s+/g, "-")} className="mt-16 scroll-mt-8">
+      <h2 className="mb-6 font-mono text-xs uppercase tracking-widest text-muted">{title}</h2>
+      {children}
+    </section>
+  );
+}
+
+function Bullets({ items }: { items: string[] }) {
+  return (
+    <ul className="mt-3 space-y-1.5 text-sm leading-6">
+      {items.map((h) => (
+        <li key={h} className="flex gap-2">
+          <span className="text-muted">–</span>
+          <span>{h}</span>
+        </li>
+      ))}
+    </ul>
+  );
+}
+
+function ProjectCard({ p }: { p: Project }) {
+  const card = (
+    <div className="rounded-xl border border-line p-5 transition-colors hover:border-foreground/30">
+      <div className="flex items-baseline justify-between gap-4">
+        <h3 className="font-medium">{p.title}</h3>
+        {p.href ? (
+          <span className="text-muted">↗</span>
+        ) : (
+          p.period && <span className="shrink-0 font-mono text-xs text-muted">{p.period}</span>
+        )}
+      </div>
+      <p className="mt-2 text-sm leading-6 text-muted">{p.description}</p>
+      <Bullets items={p.highlights} />
+      <div className="mt-4 flex flex-wrap gap-2">
+        {p.tags.map((t) => (
+          <span key={t} className="rounded-full bg-chip px-2.5 py-0.5 font-mono text-xs">
+            {t}
+          </span>
+        ))}
+      </div>
+    </div>
+  );
+  return p.href ? (
+    <a href={p.href} target="_blank" rel="noopener noreferrer" className="block">
+      {card}
+    </a>
+  ) : (
+    card
+  );
+}
+
+function CardList({ items }: { items: Project[] }) {
+  return (
+    <ul className="grid gap-4">
+      {items.map((p) => (
+        <li key={p.title}>
+          <ProjectCard p={p} />
+        </li>
+      ))}
+    </ul>
+  );
+}
+
+function TitledList({ items }: { items: { title: string; detail: string }[] }) {
+  return (
+    <ul className="space-y-5">
+      {items.map((e) => (
+        <li key={e.title}>
+          <p className="font-medium">{e.title}</p>
+          <p className="mt-1 text-sm leading-6 text-muted">{e.detail}</p>
+        </li>
+      ))}
+    </ul>
+  );
+}
 
 export default function Home() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert h-5 w-[100px]"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the{" "}
-            <code className="rounded bg-black/[.06] px-1.5 py-0.5 font-mono text-[0.9em] dark:bg-white/[.08]">
-              page.tsx
-            </code>{" "}
-            file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
+    <main className="mx-auto w-full max-w-2xl px-6 py-20 sm:py-28">
+      <header>
+        <h1 className="text-4xl font-semibold tracking-tight sm:text-5xl">{profile.name}</h1>
+        <a
+          href={profile.github.href}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="link mt-3 inline-block font-mono text-sm"
+        >
+          {profile.github.label} ↗
+        </a>
+      </header>
+
+      <ul className="mt-10 space-y-2.5">
+        {highlights.map((h) => (
+          <li key={h.text}>
+            <a href={`#${h.section}`} className="group flex gap-3 leading-6">
+              <span className="text-muted transition-colors group-hover:text-foreground">→</span>
+              <span className="underline decoration-transparent underline-offset-4 transition-colors group-hover:decoration-line">
+                {h.text}
+              </span>
+            </a>
+          </li>
+        ))}
+      </ul>
+
+      <Section title="About">
+        <div className="space-y-4 leading-7">
+          {profile.about.map((p) => (
+            <p key={p}>{p}</p>
+          ))}
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert h-[14px] w-4"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={14}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+      </Section>
+
+      <Section title="Experience">
+        <ul className="space-y-8">
+          {experience.map((e) => (
+            <li key={e.role + e.org}>
+              <div className="grid gap-1 sm:grid-cols-[1fr_auto] sm:gap-4">
+                <div>
+                  <p className="font-medium">{e.role}</p>
+                  <p className="text-sm text-muted">{e.org}</p>
+                </div>
+                <p className="font-mono text-xs text-muted sm:pt-1">{e.period}</p>
+              </div>
+              <Bullets items={e.highlights} />
+            </li>
+          ))}
+        </ul>
+      </Section>
+
+      <Section title="Research">
+        <CardList items={research} />
+      </Section>
+
+      <Section title="Projects">
+        <CardList items={projects} />
+      </Section>
+
+      <Section title="Awards">
+        <TitledList items={awards.map((a) => ({ title: a.title, detail: a.org }))} />
+      </Section>
+
+      <Section title="Education">
+        <TitledList items={education} />
+      </Section>
+
+      <Section title="Skills">
+        <div className="space-y-5">
+          {Object.entries(skills).map(([group, items]) => (
+            <div key={group} className="grid gap-2 sm:grid-cols-[6rem_1fr] sm:gap-4">
+              <p className="pt-1 text-sm text-muted">{group}</p>
+              <div className="flex flex-wrap gap-2">
+                {items.map((s) => (
+                  <span key={s} className="rounded-full border border-line px-3 py-1 text-sm">
+                    {s}
+                  </span>
+                ))}
+              </div>
+            </div>
+          ))}
         </div>
-      </main>
-    </div>
+      </Section>
+
+      <Section title="Beyond Code">
+        <TitledList items={beyond} />
+      </Section>
+
+      <footer className="mt-24 flex flex-wrap gap-x-2 gap-y-1 border-t border-line pt-6 text-sm text-muted">
+        <a href={`mailto:${profile.email}`} className="link">
+          {profile.email}
+        </a>
+        <span>·</span>
+        <a href={profile.resume} target="_blank" rel="noopener noreferrer" className="link">
+          Resume
+        </a>
+        <span>·</span>
+        <span>{profile.location}</span>
+      </footer>
+    </main>
   );
 }
