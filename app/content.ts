@@ -26,8 +26,8 @@ export const profile = {
   email: "torazo.tokuda@gmail.com",
   about: [
     "I'm starting at Harvey Mudd College with an intended joint major in computer science and mathematics. Before that I did the IB at United World College in Singapore, where I founded our school's first FIRST Robotics team.",
-    "These days I mostly work on prediction markets: forecasting models, cross-venue arbitrage, market microstructure, and latency. I like taking a mathematical idea, turning it into code, and running an experiment that shows whether it actually works, and I report it honestly when it doesn't.",
-    "I've lived in Tokyo, Singapore, and LA, and I speak Japanese and English. Outside of code I climb (working toward V7), lift (chasing a 225 bench and 315 squat), and dance.",
+    "Right now I'm focused on getting better at math, aiming for a 15+ on the Putnam, and on building real, working apps for the Claremont Colleges.",
+    "Outside of that I'm training for a V7 climb and a 225 bench / 315 squat at 135 lb bodyweight. I've lived in Tokyo, Singapore, and LA, and I speak Japanese and English.",
   ],
   github: { label: "github.com/Torazo5", href: "https://github.com/Torazo5" } as Link,
   resume: "/resume.pdf",
@@ -35,14 +35,12 @@ export const profile = {
 
 // The short list at the top of the page. `section` links to the matching section below.
 export const highlights = [
-  { text: "Gold Medal (full score), Canadian Computing Competition", section: "awards" },
-  { text: "Top 5, National Olympiad in Informatics Singapore", section: "awards" },
-  { text: "2× Champion, Hyundai HMGICS Robotics Challenge (autonomous drones)", section: "projects" },
+  { text: "Quant research intern, Tokyo", section: "experience" },
   { text: "Founded & captained a FIRST Robotics team, raised S$10K+", section: "experience" },
-  { text: "Quant research intern (Tokyo) · SWE intern (Floramis)", section: "experience" },
-  { text: "Prediction-market research: arbitrage engine, weather models, 316K wallets", section: "research" },
-  { text: "IB Spanish Practice Platform: AI speaking trainer, 100 active users", section: "projects" },
-  { text: "Tiny Desk song-boundary pipeline and RL locomotion agent from scratch", section: "projects" },
+  { text: "Software engineer intern, Floramis", section: "experience" },
+  { text: "Prediction-market research: arbitrage, weather, 316K wallets", section: "research" },
+  { text: "Autonomous drones: Hyundai HMGICS Robotics Challenge champion", section: "projects" },
+  { text: "IB Spanish Practice Platform: 100 active users", section: "projects" },
 ];
 
 export const experience: Role[] = [
@@ -93,6 +91,9 @@ export const experience: Role[] = [
   },
 ];
 
+// Full prediction-market research notebook, linked next to the Research heading.
+export const researchNotebook: Link = { label: "Full notebook", href: "https://predport.vercel.app/" };
+
 export const research: Project[] = [
   {
     title: "Cross-Market Arbitrage Engine",
@@ -114,6 +115,7 @@ export const research: Project[] = [
       "Entry floors around 12¢ and 15¢ returned ~+9.11 and ~+9.54 net in the analyzed sample",
     ],
     tags: ["Forecasting", "scikit-learn", "Walk-forward validation"],
+    href: "https://predport.vercel.app/projects/weather",
   },
   {
     title: "Event-Market ML Modeling",
@@ -134,6 +136,7 @@ export const research: Project[] = [
       "Showed an apparent edge disappeared at ~100 ms of added execution latency",
     ],
     tags: ["Microstructure", "Latency analysis", "DuckDB"],
+    href: "https://predport.vercel.app/projects/wallet-flow",
   },
   {
     title: "CS2 Live-Market Analysis",
@@ -144,6 +147,7 @@ export const research: Project[] = [
       "Real but sub-cost: 5.2¢/trade gross, −2¢ net after fees and slippage, with 60% of the gap from exit timing",
     ],
     tags: ["Data pipeline", "Momentum", "Esports"],
+    href: "https://predport.vercel.app/projects/cs2",
   },
   {
     title: "ML Road Mapping for Rural Peru",
@@ -169,9 +173,10 @@ export const projects: Project[] = [
       "Reached 100 active users at peak",
     ],
     tags: ["Next.js", "TypeScript", "Whisper", "Groq/Llama", "Tailwind"],
+    href: "https://github.com/Torazo5/spanish_ab_v1",
   },
   {
-    title: "Tiny Desk Song-Boundary Pipeline",
+    title: "Tiny Office: Tiny Desk Song-Boundary Pipeline",
     description:
       "Browse NPR Tiny Desk performances song by song, skipping the banter and applause in between.",
     highlights: [
@@ -181,6 +186,7 @@ export const projects: Project[] = [
       "Output powers a Spotify-like Tiny Desk browser using official YouTube playback",
     ],
     tags: ["Python", "TensorFlow/YAMNet", "ffmpeg", "yt-dlp"],
+    href: "https://tiny-office-web.vercel.app/",
   },
   {
     title: "Reinforcement-Learning Locomotion",
@@ -202,6 +208,7 @@ export const projects: Project[] = [
       "2× Champion and 1× Runner-up at the Hyundai HMGICS Robotics Challenge, S$1,000+ in prizes",
     ],
     tags: ["Python", "YOLOv8", "OpenCV"],
+    href: "https://github.com/Torazo5/HMGICS24",
   },
   {
     title: "MATE ROV Underwater Vision",
@@ -239,7 +246,8 @@ export const projects: Project[] = [
   },
   {
     title: "5C Menu",
-    description: "Digging into the 5C Menu app and its PHP backend/API to fix and extend it.",
+    description:
+      "Working on 5C Menu, the Claremont Colleges dining app with 10K active users, and its PHP backend/API to fix and extend it.",
     highlights: [
       "Found gaps: missing menus on holidays and non-Hoch dining days, no Android support, unused nutrition data",
       "Proposed taking over maintenance and improving the API without breaking the existing app",
@@ -292,14 +300,8 @@ export const beyond = [
     detail:
       "Repaired and donated 15 computers to migrant families, led drum therapy for 40+ people with dementia at Anglican Care Centre, and pushed menu changes for Veggie Wednesday",
   },
-  {
-    title: "Dance",
-    detail:
-      "Performed an El Salvadoran cultural piece (1 of 5 male dancers selected) and an Indian cultural dance, and was selected for the contemporary showcase",
-  },
-  { title: "Volleyball", detail: "Setter on the UWCSEA Dragons in national competitions" },
   { title: "Climbing", detail: "Working toward V7" },
-  { title: "Lifting", detail: "Chasing a 225 lb bench and 315 lb squat" },
+  { title: "Lifting", detail: "Chasing a 225 lb bench and 315 lb squat at 135 lb bodyweight" },
 ];
 
 export const skills = {

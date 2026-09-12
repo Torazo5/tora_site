@@ -7,14 +7,31 @@ import {
   profile,
   projects,
   research,
+  researchNotebook,
   skills,
+  type Link,
   type Project,
 } from "./content";
 
-function Section({ title, children }: { title: string; children: React.ReactNode }) {
+function Section({
+  title,
+  link,
+  children,
+}: {
+  title: string;
+  link?: Link;
+  children: React.ReactNode;
+}) {
   return (
     <section id={title.toLowerCase().replace(/\s+/g, "-")} className="mt-16 scroll-mt-8">
-      <h2 className="mb-6 font-mono text-xs uppercase tracking-widest text-muted">{title}</h2>
+      <div className="mb-6 flex items-baseline justify-between gap-4">
+        <h2 className="font-mono text-xs uppercase tracking-widest text-muted">{title}</h2>
+        {link && (
+          <a href={link.href} target="_blank" rel="noopener noreferrer" className="link text-sm">
+            {link.label} ↗
+          </a>
+        )}
+      </div>
       {children}
     </section>
   );
@@ -142,7 +159,7 @@ export default function Home() {
         </ul>
       </Section>
 
-      <Section title="Research">
+      <Section title="Research" link={researchNotebook}>
         <CardList items={research} />
       </Section>
 
