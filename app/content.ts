@@ -27,7 +27,7 @@ export const profile = {
   about: [
     "I'm starting at Harvey Mudd College with an intended joint major in computer science and mathematics. Before that I did the IB at United World College in Singapore, where I founded our school's first FIRST Robotics team.",
     "These days I mostly work on prediction markets: forecasting models, cross-venue arbitrage, market microstructure, and latency. I like taking a mathematical idea, turning it into code, and running an experiment that shows whether it actually works, and I report it honestly when it doesn't.",
-    "I've lived in Hong Kong and Singapore and speak Japanese, English, and Indonesian. Outside of code I climb (working toward V7) and dance.",
+    "I've lived in Tokyo, Singapore, and LA, and I speak Japanese and English. Outside of code I climb (working toward V7), lift (chasing a 225 bench and 315 squat), and dance.",
   ],
   github: { label: "github.com/Torazo5", href: "https://github.com/Torazo5" } as Link,
   resume: "/resume.pdf",
@@ -299,6 +299,7 @@ export const beyond = [
   },
   { title: "Volleyball", detail: "Setter on the UWCSEA Dragons in national competitions" },
   { title: "Climbing", detail: "Working toward V7" },
+  { title: "Lifting", detail: "Chasing a 225 lb bench and 315 lb squat" },
 ];
 
 export const skills = {
@@ -317,5 +318,5 @@ export const skills = {
   Data: ["pandas", "NumPy", "DuckDB", "Polars", "Parquet", "SQLite", "Postgres"],
   Systems: ["asyncio", "WebSockets", "REST APIs", "Rate-limit/retry handling", "RSA-PSS signing", "Git"],
   Web: ["React", "Next.js", "Node.js", "Flask", "FastAPI", "Tailwind", "shadcn/ui", "Supabase", "MongoDB", "AWS"],
-  Spoken: ["Japanese", "English", "Indonesian"],
+  Spoken: ["Japanese", "English"],
 };
